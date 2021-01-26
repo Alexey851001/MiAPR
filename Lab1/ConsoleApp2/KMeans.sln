@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{CBB73028-E842-4FA8-A1D0-41F4FE737762}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassGenerator", "ClassGenerator\ClassGenerator.csproj", "{6A980AE7-71F0-4ECA-8454-5A1BA5BAAE4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassesGenerator", "ClassGenerator\ClassesGenerator.csproj", "{6A980AE7-71F0-4ECA-8454-5A1BA5BAAE4B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{67F02809-1CFD-4FCE-9117-15F3C38476C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6A980AE7-71F0-4ECA-8454-5A1BA5BAAE4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A980AE7-71F0-4ECA-8454-5A1BA5BAAE4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A980AE7-71F0-4ECA-8454-5A1BA5BAAE4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F02809-1CFD-4FCE-9117-15F3C38476C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F02809-1CFD-4FCE-9117-15F3C38476C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F02809-1CFD-4FCE-9117-15F3C38476C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F02809-1CFD-4FCE-9117-15F3C38476C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
