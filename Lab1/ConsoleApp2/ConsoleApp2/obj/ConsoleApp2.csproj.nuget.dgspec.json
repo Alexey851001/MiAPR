@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\6sem\\MiAPR\\MiAPR\\Lab1\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj": {}
+    "d:\\MiAPR\\Lab1\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj": {}
   },
   "projects": {
-    "D:\\6sem\\MiAPR\\MiAPR\\Lab1\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj": {
+    "d:\\MiAPR\\Lab1\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\6sem\\MiAPR\\MiAPR\\Lab1\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj",
+        "projectUniqueName": "d:\\MiAPR\\Lab1\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj",
         "projectName": "ConsoleApp2",
-        "projectPath": "D:\\6sem\\MiAPR\\MiAPR\\Lab1\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj",
-        "packagesPath": "C:\\Users\\Алексей\\.nuget\\packages\\",
-        "outputPath": "D:\\6sem\\MiAPR\\MiAPR\\Lab1\\ConsoleApp2\\ConsoleApp2\\obj\\",
+        "projectPath": "d:\\MiAPR\\Lab1\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "d:\\MiAPR\\Lab1\\ConsoleApp2\\ConsoleApp2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Алексей\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +26,6 @@
         },
         "frameworks": {
           "net472": {
-            "targetAlias": "net472",
             "projectReferences": {}
           }
         },
@@ -38,8 +37,7 @@
       },
       "frameworks": {
         "net472": {
-          "targetAlias": "net472",
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

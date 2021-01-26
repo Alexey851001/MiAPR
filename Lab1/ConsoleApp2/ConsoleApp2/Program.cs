@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace ConsoleApp2
 {
     class Program
@@ -40,9 +41,59 @@ namespace ConsoleApp2
 
                 AllAreas.Add(new Area(kernel));
             }
-            
+        }
+        public double Distance(Point point1,Point point2) {
+
+            return Math.Sqrt((point1.X - point2.X) ^ 2 + (point1.Y - point2.Y) ^ 2);
+        }
+        public void GetArea(Area currentArea) {
+            currentArea.AreaPoints.Clear();
+            foreach (var point in AllPoints)
+            {
+                bool inArea = true;
+                foreach (var area in AllAreas)
+                {
+                    if (area == currentArea) {
+                        continue;
+                    }
+                    if (Distance(currentArea.Kernel, point) > Distance(area.Kernel, point)) {
+                        inArea = false;
+                        break;
+                    }
+
+                }
+                if (inArea)
+                {
+                    currentArea.AreaPoints.Add(point);
+                }
+            }
+        }
+        public double GetJ(Point newKernel,Area area) {
+            double result = 0;
+            foreach (var point in area.AreaPoints) {
+                result += result + ((point.X - newKernel.X) ^ 2 + (point.Y - newKernel.Y) ^ 2);
+            }
+            return result;
+
+        }
+        public void Iteration() {
+            foreach (var area in AllAreas) {
+                Point min = area.Kernel;
+                double minJ = GetJ(min, area);
+                foreach (var point in area.AreaPoints) {
+                    double tempJ = GetJ(point, area);
+                    if (tempJ < minJ) {
+                        minJ = tempJ;
+                        min = point;
+                    }
+                }
+                area.OldKernel = area.Kernel;
+                area.Kernel = min;            
+            }
+        
         }
     }
+    
 
     public class Point
     {
@@ -51,8 +102,8 @@ namespace ConsoleApp2
             return X == point.X && Y == point.Y;
         }
 
-        private int X {get; set; }
-        private int Y { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
         public Point(int x, int y)
         {
