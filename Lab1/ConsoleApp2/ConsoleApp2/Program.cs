@@ -125,4 +125,9 @@ namespace ConsoleApp2
             Kernel = kernel;
         }
     }
+
+    public class Kmeans
+    {
+        
+    }
 }

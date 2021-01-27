@@ -119,7 +119,7 @@ namespace KMeans
             double result = 0;
             foreach (var point in area.AreaPoints)
             {
-                result += result + ((point.X - newKernel.X) ^ 2 + (point.Y - newKernel.Y) ^ 2);
+                result += Math.Pow((point.X - newKernel.X), 2) + Math.Pow((point.Y - newKernel.Y), 2);
             }
             return result;
 

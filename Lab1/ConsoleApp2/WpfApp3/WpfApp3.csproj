@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net472-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.Reactive.Windows.Forms" Version="5.0.0" />
+      <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
+    </ItemGroup>
+
+</Project>
