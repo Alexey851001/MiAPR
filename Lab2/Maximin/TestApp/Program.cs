@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Minimax;
+using Maximin;
 namespace TestApp
 {
     class Program
@@ -27,12 +27,13 @@ namespace TestApp
             List<Area> areas;
             //requared initialization
             while (circles > 0)
-            {
-                ClassesGenerator.Initialize(pointCount, classCount);
-
+            {                
+                Console.WriteLine("Initialize");
+                areas = ClassesGenerator.Initialize(pointCount, classCount);
+                WriteAreas(areas);
                 //step-by-step generation
                 int iterations = 0;
-                Console.WriteLine("start step-by-step generation");
+                Console.WriteLine("start step-by-step generation"); 
                 while (!ClassesGenerator.EndIteration())
                 {
                     areas = ClassesGenerator.Iteration();

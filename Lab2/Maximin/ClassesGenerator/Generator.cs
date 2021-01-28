@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Minimax
+namespace Maximin
 {
     public struct Point
     {
-        public bool Equals(Point point)
-        {
-            return X == point.X && Y == point.Y;
-        }
         public int X { get; set; }
         public int Y { get; set; }
 
@@ -16,6 +12,10 @@ namespace Minimax
         {
             X = x;
             Y = y;
+        }
+        public bool Equals(Point point)
+        {
+            return X == point.X && Y == point.Y;
         }
         public static bool operator ==(Point c1, Point c2)
         {
@@ -41,6 +41,13 @@ namespace Minimax
             maxDistance = double.MinValue;
             MaxKernel = new Point(-1, -1);
         }
+        public Area(Area area)
+        {
+            AreaPoints = area.AreaPoints;
+            Kernel = area.Kernel;
+            maxDistance = area.maxDistance;
+            MaxKernel = area.MaxKernel;
+        }
     }
     public static class ClassesGenerator
     {
@@ -49,7 +56,7 @@ namespace Minimax
         private static int ClassCount = 0;
         private static bool isEndIteration;
         
-        public static void Initialize(int pointCount, int classCount)
+        public static List<Area> Initialize(int pointCount, int classCount)
         {
             ClassCount = classCount;
             Iterator = 2;
@@ -63,10 +70,7 @@ namespace Minimax
                 AllPoints.Add(new Point(x, y));
             }
             AllAreas = new List<Area>();
-            //AllAreas.Add(new Area(AllPoints[0]));
-            AllAreas.Add(new Area(FindExtremePoint()));
-            AllAreas[0].AreaPoints.AddRange(AllPoints);
-            
+            AllAreas.Add(new Area(AllPoints[random.Next() % pointCount]));
             double maxDistance = double.MinValue;
             Point maxKernel = new Point(-1,-1);
             foreach (var point in AllPoints)
@@ -79,7 +83,8 @@ namespace Minimax
                }
             }
             AllAreas.Add(new Area(maxKernel));
-            GetAreas();            
+            GetAreas();
+            return AllAreas;
         }
         public static List<Area> Generate() {
             while(!EndIteration()){
@@ -123,10 +128,9 @@ namespace Minimax
                 foreach (var secondArea in AllAreas)
                 {
                     if (firstArea == secondArea) continue;
-                    double distance = Distance(firstArea.Kernel, secondArea.Kernel);
-                    double firstDistance = Distance(firstArea.Kernel, Challenger);
-                    double secondDistance = Distance(secondArea.Kernel, Challenger);
-                    if ((((firstDistance + secondDistance) / 2) - distance) <= 0) {
+                    double distance = Distance(firstArea.Kernel, secondArea.Kernel)/2;
+                    if ((maxDistance - distance) <= 0)
+                    {
                         isEndIteration = true;
                     }
                 }
@@ -164,22 +168,6 @@ namespace Minimax
                 }
                 minArea.AreaPoints.Add(point);
             }
-        }
-        private static Point FindExtremePoint() {
-            Point startPoint = new Point(0, 0);
-            Point minKernel = AllPoints[0];
-            double minDistance = double.MaxValue;
-            foreach (var point in AllPoints)
-            {
-                double distance = Distance(startPoint, point);
-                if (distance - minDistance <= 0)
-                {
-                    minDistance = distance;
-                    minKernel = point;
-                }
-            }
-            return minKernel;
-
-        }
+        }        
     }
 }
