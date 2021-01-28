@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassesGenerator\ClassesGenerator.csproj" />
+    <ProjectReference Include="..\ClassesGenerator\MaximinGenerator.csproj" />
+    <ProjectReference Include="..\ClassGenerator\KMeansGenerator.csproj" />
   </ItemGroup>
 
 </Project>

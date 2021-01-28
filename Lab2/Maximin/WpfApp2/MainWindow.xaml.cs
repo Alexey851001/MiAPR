@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using KMeans;
 using Maximin;
-
+using Generator;
 namespace WpfApp2
 {
     /// <summary>
@@ -21,18 +22,24 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Brush[] _brushes = new[] { Brushes.Blue, Brushes.Brown, Brushes.Chartreuse, Brushes.Chocolate, Brushes.Cyan, Brushes.Gold, Brushes.Gray, Brushes.Fuchsia, Brushes.Green, Brushes.Indigo, Brushes.Lime, Brushes.Maroon, Brushes.Orchid, Brushes.Red, Brushes.Salmon, Brushes.Silver, Brushes.Teal, Brushes.Tomato, Brushes.DarkGreen, Brushes.Bisque };
+        private Brush[] _brushes = new[] { Brushes.Blue, Brushes.Gold, Brushes.Gray, Brushes.Fuchsia, Brushes.Green, Brushes.Indigo, Brushes.Lime, Brushes.Maroon, Brushes.Brown, Brushes.Chartreuse, Brushes.Chocolate, Brushes.Cyan, Brushes.Orchid, Brushes.Red, Brushes.Salmon, Brushes.Silver, Brushes.Teal, Brushes.Tomato, Brushes.DarkGreen, Brushes.Bisque };
         private static int Iterator;
-        private List<List<Area>> Areas = new List<List<Area>>();
+        private List<List<IArea>> Areas = new List<List<IArea>>();
         public MainWindow()
         {
             InitializeComponent();
-            Areas.Add(new List<Area>(ClassesGenerator.Initialize(1000, 8)));           
-            while (!ClassesGenerator.EndIteration()) {
-                Areas.Add(new List<Area>(ClassesGenerator.Iteration()));
+            //while (Areas.Count < 6)
+            {
+                Areas = new List<List<IArea>>();
+                Areas.Add(new List<IArea>(Maximin.ClassesGenerator.Initialize(10000)));
+                while (!Maximin.ClassesGenerator.EndIteration())
+                {
+                    Areas.Add(new List<IArea>(Maximin.ClassesGenerator.Iteration()));
+                }
             }
-
             Iterator = Areas.Count - 1;
+            KMeans.ClassesGenerator.Initialize(Areas[Areas.Count - 1], Maximin.ClassesGenerator.GetPoints());
+            Areas.Add(new List<IArea>(KMeans.ClassesGenerator.Generate()));
             DrawAreas();
         }
         private void Iteration_KeyDown(object sender, KeyEventArgs e)
@@ -57,7 +64,7 @@ namespace WpfApp2
         }
         private void DrawAreas() {
             int index = 0;
-            List<Area> areas = Areas[Iterator];
+            List<IArea> areas = Areas[Iterator];
             grid1.Children.Clear();
             foreach (var area in areas)
             {
@@ -72,7 +79,7 @@ namespace WpfApp2
             }
 
         }
-        public void DrawPoint(Maximin.Point point, Brush brush)
+        public void DrawPoint(Generator.Point point, Brush brush)
         {            
             Ellipse elipse = new Ellipse();
 
