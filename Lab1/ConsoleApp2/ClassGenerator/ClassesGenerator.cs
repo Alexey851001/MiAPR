@@ -8,10 +8,6 @@ namespace KMeans
 
     public struct Point
     {
-        public bool Equals(Point point)
-        {
-            return X == point.X && Y == point.Y;
-        }
         public int X { get; set; }
         public int Y { get; set; }
 
@@ -20,11 +16,14 @@ namespace KMeans
             X = x;
             Y = y;
         }
+        public bool Equals(Point point)
+        {
+            return X == point.X && Y == point.Y;
+        }
         public static bool operator ==(Point c1, Point c2)
         {
             return c1.Equals(c2);
         }
-
         public static bool operator !=(Point c1, Point c2)
         {
             return !c1.Equals(c2);
@@ -42,12 +41,19 @@ namespace KMeans
             AreaPoints = new List<Point>();
             Kernel = kernel;
         }
+        public Area(Area area)
+        {
+            OldKernel = area.OldKernel;
+            AreaPoints = area.AreaPoints;
+            Kernel = area.Kernel;
+        }
+
     }
     public static class ClassesGenerator
     {
         private static List<Point> AllPoints;
         private static List<Area> AllAreas;
-        public static void Initialize(int pointCount, int classCount) {
+        public static List<Area> Initialize(int pointCount, int classCount) {
             Random random = new Random();
             AllPoints = new List<Point>();
             for (int i = 0; i < pointCount; i++)
@@ -57,7 +63,8 @@ namespace KMeans
                 AllPoints.Add(new Point(x, y));
             }
             AllAreas = new List<Area>();
-            for (int i = 0; i < classCount; i++)
+            AllAreas.Add(new Area(FindExtremePoint()));
+            for (int i = 1; i < classCount; i++)
             {
                 bool isKernel = false;
                 Point kernel;
@@ -75,6 +82,8 @@ namespace KMeans
                 } while (isKernel);
                 AllAreas.Add(new Area(kernel));
             }
+            GetAreas();
+            return AllAreas;
         }
         public static List<Area> Generate()
         {            
@@ -85,8 +94,7 @@ namespace KMeans
             return AllAreas;
         }
         public static List<Area> Iteration()
-        {
-            GetAreas();
+        {            
             foreach (var area in AllAreas)
             {
                 Point min = area.Kernel;
@@ -104,6 +112,7 @@ namespace KMeans
                 area.Kernel = min;
 
             }
+            GetAreas();
             return AllAreas;
         }
         public static bool EndIteration()
@@ -143,6 +152,23 @@ namespace KMeans
                 }
                 minArea.AreaPoints.Add(point);
             }
+        }
+        private static Point FindExtremePoint()
+        {
+            Point startPoint = new Point(0, 0);
+            Point minKernel = AllPoints[0];
+            double minDistance = double.MaxValue;
+            foreach (var point in AllPoints)
+            {
+                double distance = Distance(startPoint, point);
+                if (distance - minDistance <= 0)
+                {
+                    minDistance = distance;
+                    minKernel = point;
+                }
+            }
+            return minKernel;
+
         }
     }
 }
