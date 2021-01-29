@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ClassGenerator\ClassesGenerator.csproj" />
+      <ProjectReference Include="..\ClassGenerator\KMeansGenerator.csproj" />
     </ItemGroup>
 
 </Project>

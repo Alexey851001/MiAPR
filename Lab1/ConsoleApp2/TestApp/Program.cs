@@ -20,8 +20,8 @@ namespace TestApp
             //int pointCount = Console.Read();
             //Console.WriteLine("Enter count of class");
             //int classCount = Console.Read();
-            int pointCount = 1000;
-            int classCount = 8;
+            int pointCount = 10000;
+            int classCount = 5;
             List<Area> areas;
             //requared initialization
             ClassesGenerator.Initialize(pointCount, classCount);
