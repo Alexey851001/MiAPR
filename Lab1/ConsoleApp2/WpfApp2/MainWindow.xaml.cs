@@ -27,12 +27,19 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
-            Areas.Add(new List<Area>(ClassesGenerator.Initialize(20000, 11)));
+            //Areas.Add(new List<Area>(ClassesGenerator.Initialize(10000, 8)));
+            List<Area> areas = new List<Area>(ClassesGenerator.Initialize(10000, 8));
+            List<Area> areas1 = new List<Area>();
+            areas.ForEach(area => areas1.Add(new Area(area)));
+            Areas.Add(areas1);
             while (!ClassesGenerator.EndIteration())
             {
-                Areas.Add(new List<Area>(ClassesGenerator.Iteration()));
+                areas = new List<Area>(ClassesGenerator.Iteration());
+                areas1 = new List<Area>();
+                areas.ForEach(area => areas1.Add(new Area(area)));
+                Areas.Add(areas1);
+                //Areas.Add(new List<Area>(ClassesGenerator.Iteration()));
             }
-
             Iterator = 0;
             DrawAreas();
         }

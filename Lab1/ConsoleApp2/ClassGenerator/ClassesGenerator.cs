@@ -16,6 +16,11 @@ namespace KMeans
             X = x;
             Y = y;
         }
+        public Point(Point point)
+        {
+            X = point.X;
+            Y = point.Y;
+        }
         public bool Equals(Point point)
         {
             return X == point.X && Y == point.Y;
@@ -43,9 +48,10 @@ namespace KMeans
         }
         public Area(Area area)
         {
-            OldKernel = area.OldKernel;
-            AreaPoints = area.AreaPoints;
-            Kernel = area.Kernel;
+            OldKernel = new Point(-1, -1);
+            AreaPoints = new List<Point>();
+            AreaPoints.AddRange(area.AreaPoints);
+            Kernel = new Point(area.Kernel);
         }
 
     }
