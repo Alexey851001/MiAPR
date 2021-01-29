@@ -22,18 +22,12 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Brush[] _brushes = new[] {Brushes.Blue, Brushes.Brown, Brushes.Chartreuse, 
-            Brushes.Chocolate, Brushes.Cyan, Brushes.Gold,
-            Brushes.Gray, Brushes.Fuchsia, Brushes.Green,
-            Brushes.Indigo, Brushes.Lime, Brushes.Maroon, 
-            Brushes.Orchid, Brushes.Red, Brushes.Salmon,
-            Brushes.Silver, Brushes.Teal, Brushes.Tomato,
-            Brushes.DarkGreen, Brushes.Bisque };
+        private Brush[] _brushes = new[] {Brushes.Blue, Brushes.Brown, Brushes.Chartreuse, Brushes.Chocolate, Brushes.Cyan, Brushes.Gold, Brushes.Gray, Brushes.Fuchsia, Brushes.Green, Brushes.Indigo, Brushes.Lime, Brushes.Maroon, Brushes.Orchid, Brushes.Red, Brushes.Salmon, Brushes.Silver, Brushes.Teal, Brushes.Tomato, Brushes.DarkGreen, Brushes.Bisque };
         public MainWindow()
         {
             InitializeComponent();
             
-            ClassesGenerator.Initialize(10000, 5);
+            ClassesGenerator.Initialize(1000, 2);
 
             List<Area> areas = ClassesGenerator.Generate();
             int index = 0;
