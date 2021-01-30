@@ -1,0 +1,57 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Canvas Grid.Row ="0" Name="canvas" Height="480" Width="800"></Canvas>
+        <ListView Grid.Row="1">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="20">P(C1)=</Label>
+                <TextBox Width="40"  Name="TextPC1"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="20">P(C2)=</Label>
+                <TextBox Width="40"  Name="TextPC2"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Width="120">
+                <Button Click="ButtonBase_OnClick" Width="120">Evaluate</Button>
+            </StackPanel>
+        </ListView>
+        <ListView Grid.Row="2">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="20">Pл.т.=</Label>
+                <TextBox Width="150" Name="TextFalseAlarm"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="20">Pп.о.=</Label>
+                <TextBox Width="150"  Name="TextMissingDetection"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="20">Pсумм=</Label>
+                <TextBox Width="150"  Name="TextSum"></TextBox>
+            </StackPanel>
+        </ListView>
+    </Grid>
+</Window>
