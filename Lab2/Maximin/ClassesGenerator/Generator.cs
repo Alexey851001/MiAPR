@@ -19,14 +19,16 @@ namespace Maximin
         }
         public Area(Area area)
         {
-            AreaPoints = area.AreaPoints;
+            AreaPoints = new List<Point>();
+            AreaPoints.AddRange(area.AreaPoints);
             Kernel = area.Kernel;
             maxDistance = area.maxDistance;
             MaxKernel = area.MaxKernel;
         }
         public Area(IArea area)
         {
-            AreaPoints = area.AreaPoints;
+            AreaPoints = new List<Point>();
+            AreaPoints.AddRange(area.AreaPoints);
             Kernel = area.Kernel;
             maxDistance = double.MinValue;
             MaxKernel = new Point(-1, -1);

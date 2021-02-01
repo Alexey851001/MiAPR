@@ -20,13 +20,15 @@ namespace KMeans
         public Area(Area area)
         {
             OldKernel = area.OldKernel;
-            AreaPoints = area.AreaPoints;
+            AreaPoints = new List<Point>();
+            AreaPoints.AddRange(area.AreaPoints);
             Kernel = area.Kernel;
         }
         public Area(IArea area)
         {
             OldKernel = new Point(-1, -1);
-            AreaPoints = area.AreaPoints;
+            AreaPoints = new List<Point>();
+            AreaPoints.AddRange(area.AreaPoints);
             Kernel = area.Kernel;
         }
     }

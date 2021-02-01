@@ -22,24 +22,37 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Brush[] _brushes = new[] { Brushes.Blue, Brushes.Gold, Brushes.Gray, Brushes.Fuchsia, Brushes.Green, Brushes.Indigo, Brushes.Lime, Brushes.Maroon, Brushes.Brown, Brushes.Chartreuse, Brushes.Chocolate, Brushes.Cyan, Brushes.Orchid, Brushes.Red, Brushes.Salmon, Brushes.Silver, Brushes.Teal, Brushes.Tomato, Brushes.DarkGreen, Brushes.Bisque };
+        private Brush[] _brushes = new[] { Brushes.Blue, Brushes.Gold, Brushes.Green, Brushes.Indigo, Brushes.Lime, Brushes.Maroon, Brushes.Gray, Brushes.Fuchsia, Brushes.Brown, Brushes.Chartreuse, Brushes.Chocolate, Brushes.Cyan, Brushes.Orchid, Brushes.Red, Brushes.Salmon, Brushes.Silver, Brushes.Teal, Brushes.Tomato, Brushes.DarkGreen, Brushes.Bisque };
         private static int Iterator;
         private List<List<IArea>> Areas = new List<List<IArea>>();
         public MainWindow()
         {
             InitializeComponent();
             //while (Areas.Count < 6)
+            List<IArea> temp;
             {
                 Areas = new List<List<IArea>>();
-                Areas.Add(new List<IArea>(Maximin.ClassesGenerator.Initialize(10000)));
+                temp = new List<IArea>();
+                Maximin.ClassesGenerator.Initialize(10000).ForEach(area => temp.Add(new Maximin.Area(area)));
+                Areas.Add(temp);
                 while (!Maximin.ClassesGenerator.EndIteration())
                 {
-                    Areas.Add(new List<IArea>(Maximin.ClassesGenerator.Iteration()));
+                    temp = new List<IArea>();
+                    Maximin.ClassesGenerator.Iteration().ForEach(area => temp.Add(new Maximin.Area(area)));
+                    Areas.Add(temp);
                 }
             }
-            Iterator = Areas.Count - 1;
+            Iterator = 0;
             KMeans.ClassesGenerator.Initialize(Areas[Areas.Count - 1], Maximin.ClassesGenerator.GetPoints());
-            Areas.Add(new List<IArea>(KMeans.ClassesGenerator.Generate()));
+            while (!KMeans.ClassesGenerator.EndIteration())
+            {
+                temp = new List<IArea>();
+                KMeans.ClassesGenerator.Iteration().ForEach(area => temp.Add(new Maximin.Area(area)));
+                Areas.Add(temp);
+            }
+            //temp = new List<IArea>();
+            //KMeans.ClassesGenerator.Generate().ForEach(area => temp.Add(new KMeans.Area(area)));
+            //Areas.Add(temp);
             DrawAreas();
         }
         private void Iteration_KeyDown(object sender, KeyEventArgs e)
