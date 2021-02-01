@@ -12,8 +12,8 @@ namespace TestApp
         {
             int pointsCount = 10000;
             Random rand = new Random();
-            int[] pointsArray1=new int[pointsCount];
-            int[] pointsArray2=new int[pointsCount];
+            Point[] pointsArray1=new Point[pointsCount];
+            Point[] pointsArray2=new Point[pointsCount];
             int range = 1000;
             int offset = 150;
             double PC1 = 0.3;
@@ -24,11 +24,12 @@ namespace TestApp
             double sigma2 = 0;
             for (int i = 0; i < pointsCount; i++)
             {
-                pointsArray1[i] = rand.Next(range) - offset;
-                pointsArray2[i] = rand.Next(range) + offset;
+                pointsArray1[i].X = rand.Next(range) - offset;
+                pointsArray2[i].X = rand.Next(range) + offset;
             }
-            FaultResult faultResult = GaussianGenerator.Generate(PC1, PC2, pointsCount, pointsArray1, pointsArray2, out mathExcept1, out sigma1, out mathExcept2, out sigma2);
+            FaultResult faultResult = GaussianGenerator.Generate(PC1, PC2,pointsCount, out mathExcept1, out sigma1, out mathExcept2, out sigma2);
             WriteResult(faultResult);
+            Console.WriteLine($"M1(x)={mathExcept1}, Sigma1(x){sigma1}, M2(x)={mathExcept2}, Sigma2(x){sigma2}");
         }
     }
 }
