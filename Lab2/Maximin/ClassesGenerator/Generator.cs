@@ -77,7 +77,49 @@ namespace Maximin
         public static bool EndIteration() {
             return isEndIteration;
         }
-        public static List<Area> Iteration() {
+        public static List<Area> Iteration()
+        {
+            isEndIteration = false;
+            double maxDistance;
+            foreach (var area in AllAreas)
+            {
+                maxDistance = double.MinValue;
+                Point maxKernel = new Point(-1, -1);
+                foreach (var point in area.AreaPoints)
+                {
+                    double distance = Distance(area.Kernel, point);
+                    if (distance - maxDistance >= 0)
+                    {
+                        maxDistance = distance;
+                        maxKernel = point;
+                    }
+                }
+                area.MaxKernel = maxKernel;
+                area.maxDistance = maxDistance;
+            }
+            maxDistance = double.MinValue;
+            Area maxArea = null;
+            foreach (var area in AllAreas)
+            {
+                double tempDistance = area.maxDistance;
+                if (tempDistance - maxDistance >= 0)
+                {
+                    maxArea = area;
+                    maxDistance = tempDistance;
+                }
+            }
+            if ((maxDistance - GetAverageDistance()/2) <= 0)
+            {
+                isEndIteration = true;
+            }
+            if (!isEndIteration)
+            {
+                AllAreas.Add(new Area(maxArea.MaxKernel));
+            }
+            GetAreas();
+            return AllAreas;
+        }
+        public static List<Area> Iteration2() {
             double maxDistance;
             foreach (var area in AllAreas) {
                 maxDistance = double.MinValue;
@@ -123,7 +165,7 @@ namespace Maximin
             GetAreas();
             return AllAreas;
         }
-        public static List<Area> Iteration2()
+        public static List<Area> Iteration3()
         {
             isEndIteration = true;
             foreach (var _area in AllAreas)
@@ -188,7 +230,20 @@ namespace Maximin
             GetAreas();
             return AllAreas;
         }
-
+        private static double GetAverageDistance()
+        {
+            double count = 0;
+            double sum = 0;
+            for (var i = 0; i < AllAreas.Count - 1; i++)
+            {
+                for (var j = i + 1; j < AllAreas.Count; j++)
+                {
+                    sum += Distance(AllAreas[i].Kernel, AllAreas[j].Kernel);
+                    count++;
+                }
+            }
+            return (sum / count);
+        }
         private static double Distance(Point point1, Point point2)
         {
             return Math.Sqrt(Math.Pow((point1.X - point2.X), 2) + Math.Pow((point1.Y - point2.Y), 2));
