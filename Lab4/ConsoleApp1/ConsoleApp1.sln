@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{B264EC01-1594-4BA2-8F7A-AFE6CA925133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerseptronLib", "PerseptronLib\PerseptronLib.csproj", "{9E8CEEB0-D5C1-4F73-82C3-0269306D3541}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{DCB33764-160E-4167-97D9-0CC134CBCECD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B264EC01-1594-4BA2-8F7A-AFE6CA925133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B264EC01-1594-4BA2-8F7A-AFE6CA925133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B264EC01-1594-4BA2-8F7A-AFE6CA925133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B264EC01-1594-4BA2-8F7A-AFE6CA925133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E8CEEB0-D5C1-4F73-82C3-0269306D3541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E8CEEB0-D5C1-4F73-82C3-0269306D3541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E8CEEB0-D5C1-4F73-82C3-0269306D3541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E8CEEB0-D5C1-4F73-82C3-0269306D3541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB33764-160E-4167-97D9-0CC134CBCECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB33764-160E-4167-97D9-0CC134CBCECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB33764-160E-4167-97D9-0CC134CBCECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB33764-160E-4167-97D9-0CC134CBCECD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
